@@ -9,7 +9,6 @@ firstName = 'X'
 lastName = 'X'
 email = 'X@X.com'
 phone = '(XXX) XXX-XXXX'
-location = 'X, X, X'
 resumeLocation = ('C:\\Users\\X.pdf')
 bachName = 'X'                          # School Name
 bachDegree = 'X'                        # Degree Earned
@@ -43,8 +42,8 @@ for i in jobs:
     emailBox.send_keys(email)
     phoneBox = driver.find_element_by_id('phone')
     phoneBox.send_keys(phone)
-    locationBox = driver.find_element_by_id('job_application_location')
-    locationBox.send_keys(location)
+    locationBox = driver.find_element_by_link_text('Locate me')
+    locationBox.click()
     attachResume = driver.find_element_by_xpath("//input[@type='file']")
     attachResume.send_keys(resumeLocation)
 
