@@ -201,11 +201,26 @@ for job in jobs:
         pass
 
     # US EOEI, optional
-    Select(driver.find_element_by_id('job_application_gender')).select_by_visible_text(gender)
-    Select(driver.find_element_by_id('job_application_hispanic_ethnicity')).select_by_visible_text(hisp)
-    Select(driver.find_element_by_id('job_application_race')).select_by_visible_text(race)
-    Select(driver.find_element_by_id('job_application_veteran_status')).select_by_visible_text(vet)
-    Select(driver.find_element_by_id('job_application_disability_status')).select_by_visible_text(disability)
+    try:
+        Select(driver.find_element_by_id('job_application_gender')).select_by_visible_text(gender)
+    except:
+        pass
+    try:
+        Select(driver.find_element_by_id('job_application_hispanic_ethnicity')).select_by_visible_text(hisp)
+    except:
+        pass
+    try:
+        Select(driver.find_element_by_id('job_application_race')).select_by_visible_text(race)
+    except:
+        pass
+    try:
+        Select(driver.find_element_by_id('job_application_veteran_status')).select_by_visible_text(vet)
+    except:
+        pass
+    try:
+        Select(driver.find_element_by_id('job_application_disability_status')).select_by_visible_text(disability)
+    except:
+        pass
 
     driver.implicitly_wait(5)
     driver.find_element_by_id('submit_app').click()
