@@ -2,157 +2,158 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.ui import WebDriverWait
-import os
 
+# Comment out any questions that are optional that you don't want to answer
 # Your info
-firstName = 'X'
-lastName = 'X'
-email = 'X@X.com'
+firstName = 'First'
+lastName = 'Last'
+email = 'X@X'
 phone = '(XXX) XXX-XXXX'
-resumeLocation = ('C:\\Users\\X.pdf')
-bachName = 'X'                          # School Name
-bachDegree = 'X'                        # Degree Earned
-bachDiscipline = 'X'                    # Discipline
-bachStartMo = 'X'                       # Month Started
-bachStartY = 'X'                        # Year Started
-bachEndMo ='X'                          # Month Ended
-bachEndY = 'X'                          # Year Ended
-assName = 'X'                           # School Name
-assDegree = 'X'                         # Degree Earned
-assDiscipline = 'X'                     # Discipline
-assStartMo = 'X'                        # Month Started
-assStartY = 'X'                         # Year Started
-assEndMo ='X'                           # Month Ended
-assEndY = 'X'                           # Year Ended
+resumeLocation = ('C://Users//X.xxx')
+coverLetterLocation = ('C://Users//X.xxx')
 
+# For the following sections, copy the answer to the question exactly how they would appear on the form
+# 2nd section, education
+ed1Name = "X"                                       # School Name
+ed1Degree = "X"                                     # Degree Earned
+ed1Discipline = 'X'                                 # Discipline
+ed1StartMo = 'MM'                                   # Month Started
+ed1StartY = 'YYYY'                                  # Year Started
+ed1EndMo ='MM'                                      # Month Ended
+ed1EndY = 'YYYY'                                    # Year Ended
 
-jobs = [    ]   # List of URLs as strings
+# Can repeat for as many degrees as you want to add
+ed2Name = "X"                                       # School Name
+ed2Degree = "X"                                     # Degree Earned
+ed2Discipline = 'X'                                 # Discipline
+ed2StartMo = 'MM'                                   # Month Started
+ed2StartY = 'YYYY'                                  # Year Started
+ed2EndMo ='MM'                                      # Month Ended
+ed2EndY = 'YYYY'                                    # Year Ended
+
+# Questionnaire
+ugGPA = '4.0 out of 4.0'                            # Undergraduate GPA
+gGPA = 'Not applicable'                             # Graduate GPA
+dGPA = 'Not applicable'                             # Doctoral GPA
+sAT = 'Did not take'                                # SAT Score
+aCT = 'Did not take'                                # ACT Score
+gRE = 'Did not take'                                # GRE Score
+gMAT = 'Did not take'                               # GMAT Score
+spaceXHis = 'I have never worked for SpaceX'        # SpaceX Employment History
+spaceXEmailAddress = 'X'                            # SpaceX Email Address
+profEx = '0'                                        # Years of professional work experience
+basicQual = 'Yes'                                   # Do you meet the basic qualificaitons?
+relocate = 'Yes'                                    # Are you within a commutable distance or willing to relocate?
+portfolioLocation = ('C://Users//X.xxx')
+activeClearance = 'Secret'                          # Active Security Clearance(s)
+linkedIn = 'X'                                      # LinkedIn Profile
+addLink = 'X'                                       # Any Additional Content
+hearAbout = 'Company Website'                       # How did you hear about this job?
+pleaseSpecify = 'X'                                 # Please Specify
+authWork = 'I am authorized to work in the United States for any employer'  # Are you legally authorized to work in the United States?
+citizen = '(a) U.S. citizen or national of the United States'           # Citizenship Status
+
+# US EOEI, optional
+gender = 'X'                        # Gender
+hisp = 'X'                          # Are you Hispanic/Latino?
+race = 'X'                          # Race
+vet = 'X'                           # Veteran Status
+disability = "X"                    # Disability Status
+
+jobs = [        # List of URLs as strings
+    'X',
+    'X',
+    'X',
+    'X'
+    ]
 
 driver = webdriver.Chrome()
 count = 0
-for i in jobs:
-    driver.get(i)
+for job in jobs:
+    driver.get(job)
 
     # 1st section, basic info
-    firstNameBox = driver.find_element_by_id('first_name')
-    firstNameBox.send_keys(firstName)
-    lastNameBox = driver.find_element_by_id('last_name')
-    lastNameBox.send_keys(lastName)
-    emailBox = driver.find_element_by_id('email')
-    emailBox.send_keys(email)
-    phoneBox = driver.find_element_by_id('phone')
-    phoneBox.send_keys(phone)
-    locationBox = driver.find_element_by_link_text('Locate me')
-    locationBox.click()
-    attachResume = driver.find_element_by_xpath("//input[@type='file']")
-    attachResume.send_keys(resumeLocation)
+    driver.find_element_by_id('first_name').send_keys(firstName)
+    driver.find_element_by_id('last_name').send_keys(lastName)
+    driver.find_element_by_id('email').send_keys(email)
+    driver.find_element_by_id('phone').send_keys(phone)
+    driver.find_element_by_link_text('Locate me').click()
+    driver.find_element_by_xpath("/html/body/div[3]/form/input[9]").send_keys(resumeLocation)
+    driver.find_element_by_xpath("/html/body/div[4]/form/input[9]").send_keys(coverLetterLocation)
 
     # 2nd section, education
-    BS1 = driver.find_element_by_id('s2id_education_school_name_0')
-    BS1.click()
-    BS1 = driver.find_element_by_xpath("//input[@type='text']")
-    BS1.send_keys(bachName)
+    driver.find_element_by_id('s2id_education_school_name_0').click()
+    driver.find_element_by_xpath("//input[@type='text']").send_keys(ed1Name)
     driver.implicitly_wait(5)
     driver.find_element_by_id('selectedOption').click()
-    BS2 = driver.find_element_by_id('s2id_education_degree_0')
-    BS2.click()
-    BS2 = driver.find_element_by_xpath("//input[@type='text']")
-    BS2.send_keys(bachDegree)
+    driver.find_element_by_id('s2id_education_degree_0').click()
+    driver.find_element_by_xpath("//input[@type='text']").send_keys(ed1Degree)
     driver.implicitly_wait(5)
     driver.find_element_by_id('selectedOption').click()
-    BS3 = driver.find_element_by_id('s2id_education_discipline_0')
-    BS3.click()
-    BS3 = driver.find_element_by_xpath("//input[@type='text']")
-    BS3.send_keys(bachDiscipline)
+    driver.find_element_by_id('s2id_education_discipline_0').click()
+    driver.find_element_by_xpath("//input[@type='text']").send_keys(ed1Discipline)
     driver.implicitly_wait(5)
     driver.find_element_by_id('selectedOption').click()
-    BS4 = driver.find_element_by_xpath('//*[@id="education_section"]/div[1]/fieldset/div[4]/fieldset/input[1]')
-    BS4.send_keys(bachStartMo)
-    BS5 = driver.find_element_by_xpath('//*[@id="education_section"]/div[1]/fieldset/div[4]/fieldset/input[2]')
-    BS5.send_keys(bachStartY)
-    BS6 = driver.find_element_by_xpath('//*[@id="education_section"]/div[1]/fieldset/div[5]/fieldset/input[1]')
-    BS6.send_keys(bachEndMo)
-    BS7 = driver.find_element_by_xpath('//*[@id="education_section"]/div[1]/fieldset/div[5]/fieldset/input[2]')
-    BS7.send_keys(bachEndY)
+    driver.find_element_by_xpath('//*[@id="education_section"]/div[1]/fieldset/div[4]/fieldset/input[1]').send_keys(ed1StartMo)
+    driver.find_element_by_xpath('//*[@id="education_section"]/div[1]/fieldset/div[4]/fieldset/input[2]').send_keys(ed1StartY)
+    driver.find_element_by_xpath('//*[@id="education_section"]/div[1]/fieldset/div[5]/fieldset/input[1]').send_keys(ed1EndMo)
+    driver.find_element_by_xpath('//*[@id="education_section"]/div[1]/fieldset/div[5]/fieldset/input[2]').send_keys(ed1EndY)
 
     # Can repeat for as many degrees as you want to add
-    addAnotherEd1 = driver.find_element_by_id('add_education')
-    addAnotherEd1.click()
-    AS1 = driver.find_element_by_id('s2id_education_school_name_1')
-    AS1.click()
-    AS1 = driver.find_element_by_xpath("//input[@type='text']")
-    AS1.send_keys(assName)
+    driver.find_element_by_id('add_education').click()
+    driver.find_element_by_id('s2id_education_school_name_1').click()
+    driver.find_element_by_xpath("//input[@type='text']").send_keys(ed2Name)
     driver.implicitly_wait(5)
     driver.find_element_by_id('selectedOption').click()
-    AS2 = driver.find_element_by_id('s2id_education_degree_1')
-    AS2.click()
-    AS2 = driver.find_element_by_xpath("//input[@type='text']")
-    AS2.send_keys(assDegree)
+    driver.find_element_by_id('s2id_education_degree_1').click()
+    driver.find_element_by_xpath("//input[@type='text']").send_keys(ed2Degree)
     driver.implicitly_wait(5)
     driver.find_element_by_id('selectedOption').click()
-    AS3 = driver.find_element_by_id('s2id_education_discipline_1')
-    AS3.click()
-    AS3 = driver.find_element_by_xpath("//input[@type='text']")
-    AS3.send_keys(assDiscipline)
+    driver.find_element_by_id('s2id_education_discipline_1').click()
+    driver.find_element_by_xpath("//input[@type='text']").send_keys(ed2Discipline)
     driver.implicitly_wait(5)
     driver.find_element_by_id('selectedOption').click()
-    AS4 = driver.find_element_by_xpath('//*[@id="education_section"]/div[2]/fieldset/div[4]/fieldset/input[1]')
-    AS4.send_keys(assStartMo)
-    AS5 = driver.find_element_by_xpath('//*[@id="education_section"]/div[2]/fieldset/div[4]/fieldset/input[2]')
-    AS5.send_keys(assStartY)
-    AS6 = driver.find_element_by_xpath('//*[@id="education_section"]/div[2]/fieldset/div[5]/fieldset/input[1]')
-    AS6.send_keys(assEndMo)
-    AS7 = driver.find_element_by_xpath('//*[@id="education_section"]/div[2]/fieldset/div[5]/fieldset/input[2]')
-    AS7.send_keys(assEndY)
+    driver.find_element_by_xpath('//*[@id="education_section"]/div[2]/fieldset/div[4]/fieldset/input[1]').send_keys(ed2StartMo)
+    driver.find_element_by_xpath('//*[@id="education_section"]/div[2]/fieldset/div[4]/fieldset/input[2]').send_keys(ed2StartY)
+    driver.find_element_by_xpath('//*[@id="education_section"]/div[2]/fieldset/div[5]/fieldset/input[1]').send_keys(ed2EndMo)
+    driver.find_element_by_xpath('//*[@id="education_section"]/div[2]/fieldset/div[5]/fieldset/input[2]').send_keys(ed2EndY)
 
     # Questionnaire
-    edConfirm = driver.find_element_by_id('job_application_answers_attributes_0_answer_selected_options_attributes_0_question_option_id')
-    edConfirm.click()
-    ugGPA = Select(driver.find_element_by_id('job_application_answers_attributes_1_answer_selected_options_attributes_1_question_option_id'))
-    ugGPA.select_by_index(X)
-    gGPA = Select(driver.find_element_by_id('job_application_answers_attributes_2_answer_selected_options_attributes_2_question_option_id'))
-    gGPA.select_by_index(X)
-    dGPA = Select(driver.find_element_by_id('job_application_answers_attributes_3_answer_selected_options_attributes_3_question_option_id'))
-    dGPA.select_by_index(X)
-    SAT = Select(driver.find_element_by_id('job_application_answers_attributes_4_answer_selected_options_attributes_4_question_option_id'))
-    SAT.select_by_index(X)
-    ACT = Select(driver.find_element_by_id('job_application_answers_attributes_5_answer_selected_options_attributes_5_question_option_id'))
-    ACT.select_by_index(X)
-    GRE = Select(driver.find_element_by_id('job_application_answers_attributes_6_answer_selected_options_attributes_6_question_option_id'))
-    GRE.select_by_index(X)
-    GMAT = Select(driver.find_element_by_id('job_application_answers_attributes_7_answer_selected_options_attributes_7_question_option_id'))
-    GMAT.select_by_index(X)
-    spaceXHis = Select(driver.find_element_by_id('job_application_answers_attributes_8_answer_selected_options_attributes_8_question_option_id'))
-    spaceXHis.select_by_index(X)
-    profEx = Select(driver.find_element_by_id('job_application_answers_attributes_10_answer_selected_options_attributes_10_question_option_id'))
-    profEx.select_by_index(9)
-    basicQual = Select(driver.find_element_by_id('job_application_answers_attributes_11_boolean_value'))
-    basicQual.select_by_index(X)
-    relocate = Select(driver.find_element_by_id('job_application_answers_attributes_12_boolean_value'))
-    relocate.select_by_index(X)
-    hearAbout = Select(driver.find_element_by_id('job_application_answers_attributes_17_answer_selected_options_attributes_17_question_option_id'))
-    hearAbout.select_by_index(X)
-    authWork = Select(driver.find_element_by_id('job_application_answers_attributes_19_answer_selected_options_attributes_19_question_option_id'))
-    authWork.select_by_index(X)
-    citizen = Select(driver.find_element_by_id('job_application_answers_attributes_20_answer_selected_options_attributes_20_question_option_id'))
-    citizen.select_by_index(X)
+    Select(driver.find_element_by_xpath("//*[contains(text(), 'GPA (Undergraduate)')]/select")).select_by_visible_text(ugGPA)
+    Select(driver.find_element_by_xpath("//*[contains(text(), 'GPA (Graduate)')]/select")).select_by_visible_text(gGPA)
+    Select(driver.find_element_by_xpath("//*[contains(text(), 'GPA (Doctorate)')]/select")).select_by_visible_text(dGPA)
+    Select(driver.find_element_by_xpath("//*[contains(text(), 'SAT Score')]/select")).select_by_visible_text(sAT)
+    Select(driver.find_element_by_xpath("//*[contains(text(), 'ACT Score')]/select")).select_by_visible_text(aCT)
+    Select(driver.find_element_by_xpath("//*[contains(text(), 'GRE Score')]/select")).select_by_visible_text(gRE)
+    Select(driver.find_element_by_xpath("//*[contains(text(), 'GMAT Score')]/select")).select_by_visible_text(gMAT)
+    Select(driver.find_element_by_xpath("//*[contains(text(), 'SpaceX Employment History')]/select")).select_by_visible_text(spaceXHis)
+    driver.find_element_by_xpath("//*[contains(text(), 'If applicable, what is / was your SpaceX email address?')]").send_keys(spaceXEmailAddress)
+    Select(driver.find_element_by_xpath("//*[contains(text(), 'How many years of professional work experience do you have?')]/select")).select_by_visible_text(profEx)
+    try:
+        Select(driver.find_element_by_xpath("//*[contains(text(), 'Do you meet all of the Basic Qualifications listed for this job?')]/select")).select_by_visible_text(basicQual)
+    except:
+        pass
+    Select(driver.find_element_by_xpath("//*[contains(text(), 'Are you within a commutable distance or willing to relocate?')]/select")).select_by_visible_text(relocate)
+    driver.find_element_by_xpath("/html/body/div[5]/form/input[9]").send_keys(portfolioLocation)
+    driver.find_element_by_xpath("//*[contains(text(), 'Active Security Clearance(s)')]").click()
+    Select(driver.find_element_by_xpath("//*[contains(text(), 'Active Security Clearance(s)')]/select")).select_by_visible_text(activeClearance)
+    driver.find_element_by_xpath("//*[contains(text(), 'LinkedIn Profile')]").send_keys(linkedIn)
+    driver.find_element_by_xpath("//*[contains(text(), 'Additional Link')]").send_keys(addLink)
+    Select(driver.find_element_by_xpath("//*[contains(text(), 'How did you hear about this job?')]/select")).select_by_visible_text(hearAbout)
+    Select(driver.find_element_by_xpath("//*[contains(text(), 'Are you legally authorized to work in the United States?')]/select")).select_by_visible_text(authWork)
+    Select(driver.find_element_by_xpath("//*[contains(text(), 'Citizenship Status')]/select")).select_by_visible_text(citizen)
 
     # US EOEI, optional
-    gender = Select(driver.find_element_by_id('job_application_gender'))
-    gender.select_by_index(X)
-    hisp = Select(driver.find_element_by_id('job_application_hispanic_ethnicity'))
-    hisp.select_by_index(X)
-    race = Select(driver.find_element_by_id('job_application_race'))
-    race.select_by_index(X)
-    vet = Select(driver.find_element_by_id('job_application_veteran_status'))
-    vet.select_by_index(X)
-    disability = Select(driver.find_element_by_id('job_application_disability_status'))
-    disability.select_by_index(X)
+    Select(driver.find_element_by_id('job_application_gender')).select_by_visible_text(gender)
+    Select(driver.find_element_by_id('job_application_hispanic_ethnicity')).select_by_visible_text(hisp)
+    Select(driver.find_element_by_id('job_application_race')).select_by_visible_text(race)
+    Select(driver.find_element_by_id('job_application_veteran_status')).select_by_visible_text(vet)
+    Select(driver.find_element_by_id('job_application_disability_status')).select_by_visible_text(disability)
 
     driver.implicitly_wait(5)
-    submit = driver.find_element_by_id('submit_app')
-    submit.click()
+    driver.find_element_by_id('submit_app').click()
     count +=1
     driver.implicitly_wait(5)
+    driver.close()
 
 print('Done, submitted ', count, ' applications')
