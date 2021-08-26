@@ -1,7 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
-from selenium.webdriver.support.ui import WebDriverWait
+
+import time
 
 # Comment out any questions that are optional that you don't want to answer
 # Your info
@@ -53,7 +54,7 @@ pleaseSpecify = 'X'                                 # Please Specify
 authWork = 'I am authorized to work in the United States for any employer'  # Are you legally authorized to work in the United States?
 citizen = '(a) U.S. citizen or national of the United States'           # Citizenship Status
 
-# US EOEI, optional
+# US EEOC, optional
 gender = 'X'                        # Gender
 hisp = 'X'                          # Are you Hispanic/Latino?
 race = 'X'                          # Race
@@ -67,9 +68,9 @@ jobs = [        # List of URLs as strings
     'X'
     ]
 
-driver = webdriver.Chrome()
 count = 0
 for job in jobs:
+    driver = webdriver.Chrome()
     driver.get(job)
 
     # 1st section, basic info
@@ -200,7 +201,7 @@ for job in jobs:
     except:
         pass
 
-    # US EOEI, optional
+    # US EEOC, optional
     try:
         Select(driver.find_element_by_id('job_application_gender')).select_by_visible_text(gender)
     except:
@@ -225,7 +226,7 @@ for job in jobs:
     driver.implicitly_wait(5)
     driver.find_element_by_id('submit_app').click()
     count +=1
-    driver.implicitly_wait(5)
+    time.sleep(3)
     driver.close()
 
 print('Done, submitted ', count, ' applications')
