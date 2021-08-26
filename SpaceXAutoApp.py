@@ -119,29 +119,86 @@ for job in jobs:
     driver.find_element_by_xpath('//*[@id="education_section"]/div[2]/fieldset/div[5]/fieldset/input[2]').send_keys(ed2EndY)
 
     # Questionnaire
-    Select(driver.find_element_by_xpath("//*[contains(text(), 'GPA (Undergraduate)')]/select")).select_by_visible_text(ugGPA)
-    Select(driver.find_element_by_xpath("//*[contains(text(), 'GPA (Graduate)')]/select")).select_by_visible_text(gGPA)
-    Select(driver.find_element_by_xpath("//*[contains(text(), 'GPA (Doctorate)')]/select")).select_by_visible_text(dGPA)
-    Select(driver.find_element_by_xpath("//*[contains(text(), 'SAT Score')]/select")).select_by_visible_text(sAT)
-    Select(driver.find_element_by_xpath("//*[contains(text(), 'ACT Score')]/select")).select_by_visible_text(aCT)
-    Select(driver.find_element_by_xpath("//*[contains(text(), 'GRE Score')]/select")).select_by_visible_text(gRE)
-    Select(driver.find_element_by_xpath("//*[contains(text(), 'GMAT Score')]/select")).select_by_visible_text(gMAT)
-    Select(driver.find_element_by_xpath("//*[contains(text(), 'SpaceX Employment History')]/select")).select_by_visible_text(spaceXHis)
-    driver.find_element_by_xpath("//*[contains(text(), 'If applicable, what is / was your SpaceX email address?')]").send_keys(spaceXEmailAddress)
-    Select(driver.find_element_by_xpath("//*[contains(text(), 'How many years of professional work experience do you have?')]/select")).select_by_visible_text(profEx)
+    try:
+        Select(driver.find_element_by_xpath("//*[contains(text(), 'GPA (Undergraduate)')]/select")).select_by_visible_text(ugGPA)
+    except:
+        pass
+    try:
+        Select(driver.find_element_by_xpath("//*[contains(text(), 'GPA (Graduate)')]/select")).select_by_visible_text(gGPA)
+    except:
+        pass
+    try:
+        Select(driver.find_element_by_xpath("//*[contains(text(), 'GPA (Doctorate)')]/select")).select_by_visible_text(dGPA)
+    except:
+        pass
+    try:
+        Select(driver.find_element_by_xpath("//*[contains(text(), 'SAT Score')]/select")).select_by_visible_text(sAT)
+    except:
+        pass
+    try:
+        Select(driver.find_element_by_xpath("//*[contains(text(), 'ACT Score')]/select")).select_by_visible_text(aCT)
+    except:
+        pass
+    try:
+        Select(driver.find_element_by_xpath("//*[contains(text(), 'GRE Score')]/select")).select_by_visible_text(gRE)
+    except:
+        pass
+    try:
+        Select(driver.find_element_by_xpath("//*[contains(text(), 'GMAT Score')]/select")).select_by_visible_text(gMAT)
+    except:
+        pass
+    try:
+        Select(driver.find_element_by_xpath("//*[contains(text(), 'SpaceX Employment History')]/select")).select_by_visible_text(spaceXHis)
+    except:
+        pass
+    try:
+        driver.find_element_by_xpath("//*[contains(text(), 'If applicable, what is / was your SpaceX email address?')]").send_keys(spaceXEmailAddress)
+    except:
+        pass
+    try:
+        Select(driver.find_element_by_xpath("//*[contains(text(), 'How many years of professional work experience do you have?')]/select")).select_by_visible_text(profEx)
+    except:
+        pass
     try:
         Select(driver.find_element_by_xpath("//*[contains(text(), 'Do you meet all of the Basic Qualifications listed for this job?')]/select")).select_by_visible_text(basicQual)
     except:
         pass
-    Select(driver.find_element_by_xpath("//*[contains(text(), 'Are you within a commutable distance or willing to relocate?')]/select")).select_by_visible_text(relocate)
-    driver.find_element_by_xpath("/html/body/div[5]/form/input[9]").send_keys(portfolioLocation)
-    driver.find_element_by_xpath("//*[contains(text(), 'Active Security Clearance(s)')]").click()
-    Select(driver.find_element_by_xpath("//*[contains(text(), 'Active Security Clearance(s)')]/select")).select_by_visible_text(activeClearance)
-    driver.find_element_by_xpath("//*[contains(text(), 'LinkedIn Profile')]").send_keys(linkedIn)
-    driver.find_element_by_xpath("//*[contains(text(), 'Additional Link')]").send_keys(addLink)
-    Select(driver.find_element_by_xpath("//*[contains(text(), 'How did you hear about this job?')]/select")).select_by_visible_text(hearAbout)
-    Select(driver.find_element_by_xpath("//*[contains(text(), 'Are you legally authorized to work in the United States?')]/select")).select_by_visible_text(authWork)
-    Select(driver.find_element_by_xpath("//*[contains(text(), 'Citizenship Status')]/select")).select_by_visible_text(citizen)
+    try:
+        Select(driver.find_element_by_xpath("//*[contains(text(), 'Are you within a commutable distance or willing to relocate?')]/select")).select_by_visible_text(relocate)
+    except:
+        pass
+    try:
+        driver.find_element_by_xpath("/html/body/div[5]/form/input[9]").send_keys(portfolioLocation)
+    except:
+        pass
+    try:
+        driver.find_element_by_xpath("//*[contains(text(), 'Active Security Clearance(s)')]").click()
+    except:
+        pass
+    try:
+        Select(driver.find_element_by_xpath("//*[contains(text(), 'Active Security Clearance(s)')]/select")).select_by_visible_text(activeClearance)
+    except:
+        pass
+    try:
+        driver.find_element_by_xpath("//*[contains(text(), 'LinkedIn Profile')]").send_keys(linkedIn)
+    except:
+        pass
+    try:
+        driver.find_element_by_xpath("//*[contains(text(), 'Additional Link')]").send_keys(addLink)
+    except:
+        pass
+    try:
+        Select(driver.find_element_by_xpath("//*[contains(text(), 'How did you hear about this job?')]/select")).select_by_visible_text(hearAbout)
+    except:
+        pass
+    try:
+        Select(driver.find_element_by_xpath("//*[contains(text(), 'Are you legally authorized to work in the United States?')]/select")).select_by_visible_text(authWork)
+    except:
+        pass
+    try:
+        Select(driver.find_element_by_xpath("//*[contains(text(), 'Citizenship Status')]/select")).select_by_visible_text(citizen)
+    except:
+        pass
 
     # US EOEI, optional
     Select(driver.find_element_by_id('job_application_gender')).select_by_visible_text(gender)
