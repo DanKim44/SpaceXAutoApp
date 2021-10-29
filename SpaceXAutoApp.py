@@ -79,8 +79,8 @@ for job in jobs:
     driver.find_element_by_id('email').send_keys(email)
     driver.find_element_by_id('phone').send_keys(phone)
     driver.find_element_by_link_text('Locate me').click()
-    driver.find_element_by_xpath("/html/body/div[3]/form/input[9]").send_keys(resumeLocation)
-    driver.find_element_by_xpath("/html/body/div[4]/form/input[9]").send_keys(coverLetterLocation)
+    driver.find_element_by_xpath("//a[@aria-labelledby='resume' and text()='Attach']").send_keys(resumeLocation)
+    driver.find_element_by_xpath("//a[@aria-labelledby='cover_letter' and text()='Attach']").send_keys(coverLetterLocation)
 
     # 2nd section, education
     driver.find_element_by_id('s2id_education_school_name_0').click()
